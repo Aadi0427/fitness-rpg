@@ -4,8 +4,22 @@ const player={
   name:'Goku',
   level:1,
   xp:0,
-  xpToNextLevel:100
+  xpToNextLevel:100,
+  completedQuest:[]
 }
+
+const quest=[
+  {
+    id:'pushUps',
+    name:'50 PushUps',
+    xp:50
+  },
+  {
+    id:"running",
+    name:'30 min running',
+    xp:75
+  }
+]
 const addXP= (amount)=>{
   player.xp += amount
 
@@ -76,6 +90,7 @@ document.querySelector("#app").innerHTML=`
  <div class="quest">
  <span>30 min running </span>
  <strong>+75xp</strong>
+ <button id="runningQuest">Complete </button>
  </div>
 
 </section>
@@ -83,6 +98,29 @@ document.querySelector("#app").innerHTML=`
 </main>
 `
 
+// PushUp quest Logic
 document.querySelector('#pushUpQuest').addEventListener('click', () => {
+  if (player.completedQuest.includes('pushups')) {
+    return
+  }
   addXP(50)
+  player.completedQuest.push('pushups')
+
+  document.querySelector('#pushUpQuest').textContent= 'completed✅';
+
+  document.querySelector('#pushUpQuest').disabled= true;
+})
+ 
+//  Running Quest Logic
+document.querySelector("#runningQuest").addEventListener('click',()=>{
+
+  if(player.completedQuest.includes('runningQuest')){
+    return;
+  }
+
+  addXP(75);
+  player.completedQuest.push('runningQuest');
+
+  document.querySelector('#runningQuest').textContent='Completed✅ '
+  document.querySelector("#runningQuest").disabled=true;
 })
