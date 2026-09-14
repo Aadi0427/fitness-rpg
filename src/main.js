@@ -44,6 +44,16 @@ const updateUI=()=>{
   `${progress}%`
 }
 
+const renderQuests = ()=>{
+  const questList = 
+  document.querySelector("#questList")
+
+  questList.innerHTML=''
+  quests.forEach((quest)=>{
+    const questElement= document.createElement('div')
+  })
+}
+
 document.querySelector("#app").innerHTML=`
  <main class="app">
 <header class="header">
@@ -81,6 +91,7 @@ document.querySelector("#app").innerHTML=`
 
 <section class="quests">
 <h2>📝 Daily Quests </h2>
+<div id="questlist"></div>
  <div class="quest">
  <span>50 Push-ups </span>
  <strong>+50xp</strong>
